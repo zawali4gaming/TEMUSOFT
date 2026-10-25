@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Temusoft — logiciels sur mesure, gestion commerciale, restaurants, stocks et automatisation bureautique.">
+<title>Temusoft — Le numérique, pensé pour votre métier</title>
+<style>
+/* ================= SYSTEM OF THEMES ================= */
+:root, [data-theme="dark"] {
+  --bg: #080d19;
+  --panel: #101a2d;
+  --panel2: #14223a;
+  --text: #f4f7ff;
+  --muted: #aab7d0;
+  --blue: #5d8cff;
+  --cyan: #42e6d0;
+  --purple: #a58bff;
+  --line: rgba(255, 255, 255, 0.11);
+  --radius: 22px;
+  --header-bg: rgba(8, 13, 25, 0.78);
+  --card-bg: linear-gradient(145deg, #121e33, #0d1525);
+  --dash-bg: linear-gradient(145deg, #172641ef, #0b1222f2);
+  --input-bg: #080f1d;
+  --gradient-title: linear-gradient(100deg, #fff 8%, #8eb1ff 52%, #42e6d0 100%);
+  --pos-card: rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="light"] {
+  --bg: #f4f7fb;
+  --panel: #ffffff;
+  --panel2: #eef2f9;
+  --text: #1a233a;
+  --muted: #5a6b8c;
+  --blue: #3b6cff;
+  --cyan: #00b8a0;
+  --purple: #8257ff;
+  --line: rgba(0, 0, 0, 0.08);
+  --header-bg: rgba(244, 247, 251, 0.85);
+  --card-bg: #ffffff;
+  --dash-bg: #ffffff;
+  --input-bg: #ffffff;
+  --gradient-title: linear-gradient(100deg, #1a233a 8%, #3b6cff 52%, #00b8a0 100%);
+  --pos-card: rgba(0, 0, 0, 0.03);
+}
+
+[data-theme="green"] {
+  --bg: #f3fbf7;
+  --panel: #ffffff;
+  --panel2: #e4f5ed;
+  --text: #0f382c;
+  --muted: #4a7567;
+  --blue: #10b981;
+  --cyan: #059669;
+  --purple: #047857;
+  --line: rgba(16, 185, 129, 0.15);
+  --header-bg: rgba(243, 251, 247, 0.88);
+  --card-bg: #ffffff;
+  --dash-bg: #ffffff;
+  --input-bg: #ffffff;
+  --gradient-title: linear-gradient(100deg, #0f382c 8%, #10b981 52%, #059669 100%);
+  --pos-card: rgba(16, 185, 129, 0.05);
+}
+
+/* ================= BASE STYLES ================= */
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:68px}
+body{margin:0;background:radial-gradient(ellipse at 80% 0%,var(--panel2) 0,transparent 34%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6;overflow-x:hidden;transition:background 0.3s, color 0.3s;}
+a{color:inherit;text-decoration:none}.container{width:min(1160px,calc(100% - 40px));margin:auto}
+header{position:sticky;top:0;z-index:50;background:var(--header-bg);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);transition:background 0.3s;}
+.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:15px}.brand{display:flex;align-items:center;gap:11px;font-weight:850;font-size:1.35rem;letter-spacing:-.04em}.brand-mark{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--blue),var(--cyan));display:grid;place-items:center;color:#fff;font-weight:950;box-shadow:0 8px 28px rgba(93,140,255,0.3)}.brand span:last-child em{font-style:normal;color:var(--cyan)}
+nav{display:flex;gap:20px;align-items:center;color:var(--muted);font-size:.93rem}nav a:hover{color:var(--text)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid transparent;border-radius:999px;padding:10px 18px;font-weight:750;font-size:.92rem;transition:transform .25s,box-shadow .25s,background .25s;cursor:pointer}.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(93,140,255,0.2)}.btn-primary{background:linear-gradient(110deg,var(--blue),var(--cyan));color:white}.btn-ghost{border-color:var(--line);background:rgba(255,255,255,0.05)}.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:8px 11px;font-size:1.2rem}
+
+/* Controls (Theme & Lang) */
+.controls-group{display:flex;align-items:center;gap:8px}
+.select-custom{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:20px;padding:6px 10px;font-size:0.85rem;outline:none;cursor:pointer}
+
+/* Hero Section (تقليل المسافة العلوية والسفلية) */
+.hero{padding:32px 0 45px;position:relative}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:45px}.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--cyan);background:rgba(66,230,208,0.1);border:1px solid rgba(66,230,208,0.2);border-radius:99px;padding:6px 12px;font-size:.82rem;font-weight:750;letter-spacing:.04em}.pulse{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 5px rgba(66,230,208,0.2)}
+h1{font-size:clamp(2.3rem,4.5vw,4.5rem);line-height:1.08;letter-spacing:-.05em;margin:16px 0 16px;max-width:720px}h1 .gradient{background:var(--gradient-title);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{color:var(--muted);font-size:1.08rem;max-width:570px;margin-bottom:0}.hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin:24px 0 22px}.trust-line{display:flex;align-items:center;gap:12px;color:var(--muted);font-size:.88rem}.avatars{display:flex}.avatars span{width:28px;height:28px;margin-right:-7px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--cyan));border:2px solid var(--bg);color:#fff;font-size:.7rem}
+html[dir="rtl"] .avatars span{margin-right:0;margin-left:-7px}
+
+/* Interactive POS Dashboard Visual */
+.visual{position:relative;min-height:440px;display:grid;place-items:center;perspective:1000px}.orb{position:absolute;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(93,140,255,0.25),transparent 65%);filter:blur(12px);animation:float 8s ease-in-out infinite}
+
+.dashboard{
+  position:relative;
+  width:min(100%,480px);
+  padding:20px;
+  border:1px solid var(--line);
+  border-radius:25px;
+  background:var(--dash-bg);
+  box-shadow:0 35px 100px rgba(0,0,0,0.18);
+  transition:transform 0.1s ease-out, box-shadow 0.3s ease;
+  transform-style:preserve-3d;
+  user-select:none;
+}
+
+.dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.dots{display:flex;gap:5px}.dots i{width:8px;height:8px;border-radius:50%;background:var(--muted)}.dash-label{font-size:.78rem;color:var(--muted);font-weight:700}.dash-pill{font-size:.72rem;color:var(--cyan);background:rgba(66,230,208,0.12);padding:4px 10px;border-radius:99px;font-weight:700}
+
+/* POS App Custom UI Inside Dashboard */
+.pos-app-wrapper{display:flex;flex-direction:column;gap:14px}
+.pos-search-bar{display:flex;gap:8px;background:var(--pos-card);padding:8px 12px;border-radius:12px;border:1px solid var(--line);align-items:center;font-size:0.85rem;color:var(--muted)}
+.pos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pos-item{background:var(--pos-card);border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center;cursor:pointer;transition:all 0.2s}
+.pos-item:hover{transform:scale(1.04);border-color:var(--cyan);box-shadow:0 5px 15px rgba(66,230,208,0.15)}
+.pos-item-icon{font-size:1.6rem;margin-bottom:4px}
+.pos-item-name{font-size:0.75rem;font-weight:700;display:block}
+.pos-item-price{font-size:0.75rem;color:var(--cyan);font-weight:800}
+
+.pos-cart-summary{background:var(--pos-card);border:1px solid var(--line);border-radius:14px;padding:12px}
+.cart-title{display:flex;justify-content:space-between;font-size:0.82rem;font-weight:800;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.cart-items-list{max-height:85px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;font-size:0.78rem}
+.cart-row{display:flex;justify-content:space-between;align-items:center}
+.cart-row-qty{color:var(--blue);font-weight:700;margin-right:4px}
+html[dir="rtl"] .cart-row-qty{margin-right:0;margin-left:4px}
+.cart-total{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:8px;border-top:1px dashed var(--line);font-weight:900;font-size:0.95rem}
+.pos-checkout-btn{width:100%;background:linear-gradient(110deg,var(--blue),var(--cyan));color:white;border:none;padding:10px;border-radius:10px;font-weight:800;font-size:0.85rem;cursor:pointer;margin-top:8px;transition:opacity 0.2s}
+.pos-checkout-btn:active{transform:scale(0.98)}
+
+.float-card{position:absolute;padding:12px 16px;border-radius:16px;border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(14px);box-shadow:0 20px 50px rgba(0,0,0,0.1);animation:float 6s ease-in-out infinite;pointer-events:none}.float-card strong{display:block;font-size:.91rem}.float-card small{color:var(--muted)}.fc-one{top:15px;right:-22px}.fc-two{bottom:15px;left:-26px;animation-delay:-2s}
+html[dir="rtl"] .fc-one{right:auto;left:-22px} html[dir="rtl"] .fc-two{left:auto;right:-26px}
+.fc-icon{display:inline-grid;place-items:center;width:29px;height:29px;border-radius:9px;background:rgba(66,230,208,0.15);color:var(--cyan);margin-right:7px}
+html[dir="rtl"] .fc-icon{margin-right:0;margin-left:7px}
+
+/* Modal Popup Styles */
+.modal-overlay{
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(0,0,0,0.7);backdrop-filter:blur(8px);
+  z-index:200;display:none;place-items:center;padding:20px;
+}
+.modal-overlay.open{display:grid}
+.modal-content{
+  background:var(--panel);border:1px solid var(--line);
+  border-radius:24px;padding:30px;width:min(100%, 520px);
+  position:relative;box-shadow:0 25px 60px rgba(0,0,0,0.4);
+}
+.modal-close{
+  position:absolute;top:18px;right:20px;background:none;border:none;
+  color:var(--muted);font-size:1.5rem;cursor:pointer;
+}
+html[dir="rtl"] .modal-close{right:auto;left:20px}
+
+section{padding:65px 0}.section-head{text-align:center;max-width:720px;margin:0 auto 42px}.kicker{color:var(--cyan);text-transform:uppercase;font-size:.76rem;font-weight:850;letter-spacing:.16em}.section-head h2{font-size:clamp(2rem,4vw,3.2rem);line-height:1.1;letter-spacing:-.05em;margin:12px 0}.section-head p{color:var(--muted);margin:0}.services{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.service{position:relative;overflow:hidden;padding:25px;border:1px solid var(--line);border-radius:var(--radius);background:var(--card-bg);transition:transform .3s,border-color .3s}.service:hover{transform:translateY(-7px);border-color:var(--blue)}.service:after{content:"";position:absolute;width:150px;height:150px;right:-85px;top:-85px;border-radius:50%;background:rgba(93,140,255,0.1);filter:blur(12px)}.iconbox{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:rgba(93,140,255,0.1);border:1px solid var(--line);font-size:1.35rem;color:var(--blue)}.service h3{font-size:1.14rem;margin:18px 0 8px}.service p{font-size:.94rem;color:var(--muted);margin:0}.tag-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:17px}.tag{font-size:.74rem;padding:5px 9px;border-radius:8px;background:rgba(255,255,255,0.05);color:var(--muted);border:1px solid var(--line)}
+
+.product-wrap{background:transparent}.products{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.product{display:flex;gap:20px;padding:26px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);transition:transform .25s,border-color .25s}.product:hover{transform:translateY(-5px);border-color:var(--cyan)}.product-icon{flex:0 0 57px;height:57px;border-radius:17px;display:grid;place-items:center;font-size:1.6rem;background:rgba(93,140,255,0.1)}.product h3{margin:1px 0 7px;font-size:1.1rem}.product p{margin:0;color:var(--muted);font-size:.93rem}.product a{display:inline-block;color:var(--cyan);font-weight:750;font-size:.86rem;margin-top:13px}
+
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.step{padding:23px 20px;border-top:2px solid var(--blue);background:rgba(93,140,255,0.03);border-radius:0 0 17px 17px}.step-num{font-size:.78rem;color:var(--cyan);font-weight:850;letter-spacing:.12em}.step h3{font-size:1rem;margin:12px 0 7px}.step p{font-size:.88rem;color:var(--muted);margin:0}
+
+.cta{padding:42px;border:1px solid var(--line);border-radius:30px;background:var(--panel2);display:flex;align-items:center;justify-content:space-between;gap:30px}.cta h2{font-size:clamp(1.8rem,3vw,2.7rem);letter-spacing:-.05em;line-height:1.1;margin:10px 0}.cta p{color:var(--muted);margin:0;max-width:600px}.cta .btn{white-space:nowrap}
+
+.contact-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:35px;align-items:start}.contact-info h2{font-size:2.5rem;line-height:1.1;letter-spacing:-.05em;margin:12px 0}.contact-info p{color:var(--muted)}.contact-item{display:flex;gap:12px;align-items:center;margin:20px 0;color:var(--text)}.contact-item span{width:39px;height:39px;display:grid;place-items:center;border-radius:12px;background:var(--panel);border:1px solid var(--line)}
+
+form{padding:27px;border:1px solid var(--line);border-radius:24px;background:var(--panel);display:grid;grid-template-columns:1fr 1fr;gap:14px}form label{font-size:.82rem;color:var(--muted);display:block;margin-bottom:6px}form .full{grid-column:1/-1}input,select,textarea{width:100%;border:1px solid var(--line);background:var(--input-bg);color:var(--text);border-radius:11px;padding:12px 13px;font:inherit;font-size:.92rem;outline:none;transition:border-color .2s}input:focus,select:focus,textarea:focus{border-color:var(--blue)}textarea{resize:vertical;min-height:120px}select option{background:var(--panel);color:var(--text)}form button{grid-column:1/-1;border:0}
+
+footer{padding:28px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}.footer-links{display:flex;gap:18px}.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:translateY(0)}
+
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:25px}.hero{padding-top:20px}.visual{min-height:410px}.dashboard{transform:none!important}.services{grid-template-columns:repeat(2,1fr)}.process{grid-template-columns:repeat(2,1fr)}.contact-grid{grid-template-columns:1fr}.fc-one{right:3px}.fc-two{left:0}}
+@media(max-width:650px){.container{width:min(100% - 28px,1160px)}.nav{height:auto;padding:12px 0;flex-wrap:wrap}.menu-btn{display:block}nav{display:none;position:absolute;left:14px;right:14px;top:68px;padding:18px;background:var(--panel);border:1px solid var(--line);border-radius:16px;flex-direction:column;align-items:stretch;gap:15px;z-index:100}nav.open{display:flex}nav .btn{align-self:stretch}.nav>.btn{display:none}.hero{padding:20px 0 20px}h1{font-size:clamp(2.1rem,10vw,3.4rem)}.visual{min-height:350px}.dashboard{padding:13px}.fc-one{top:14px}.fc-two{bottom:12px}.orb{width:260px;height:260px}.services,.products{grid-template-columns:1fr}.product{padding:21px;gap:14px}.process{grid-template-columns:1fr 1fr}section{padding:45px 0}.cta{padding:28px;align-items:flex-start;flex-direction:column}.cta .btn{width:100%}form{grid-template-columns:1fr;padding:20px}form .full,form button{grid-column:1}.footer-inner{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#accueil" aria-label="Temusoft accueil"><span class="brand-mark">T</span><span>temu<em>soft</em></span></a>
+    
+    <!-- Controls (Lang & Theme) -->
+    <div class="controls-group">
+      <select id="langSelect" class="select-custom" aria-label="Language Selector">
+        <option value="fr">🇫🇷 FR</option>
+        <option value="ar">🇩🇿 AR</option>
+        <option value="en">🇬🇧 EN</option>
+      </select>
+      
+      <select id="themeSelect" class="select-custom" aria-label="Theme Selector">
+        <option value="dark">🌙 Dark</option>
+        <option value="light">☀️ Light</option>
+        <option value="green">🌿 Green</option>
+      </select>
+    </div>
+
+    <nav id="navigation" aria-label="Navigation principale">
+      <a href="#services" data-i18n="nav_services">Nos services</a>
+      <a href="#solutions" data-i18n="nav_solutions">Nos solutions</a>
+      <a href="#methode" data-i18n="nav_methode">Notre méthode</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+      <a class="btn btn-primary" href="#contact" data-i18n="nav_talk">Parlons de votre projet ↗</a>
+    </nav>
+    <a class="btn btn-primary" href="#contact" data-i18n="nav_talk">Parlons de votre projet ↗</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+<main>
+<section class="hero" id="accueil">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="eyebrow"><span class="pulse"></span> <span data-i18n="hero_eyebrow">VOTRE PARTENAIRE NUMÉRIQUE</span></div>
+      <h1><span data-i18n="hero_title_1">Temusoft, votre partenaire pour créer</span> <span class="gradient" data-i18n="hero_title_2">l'application idéale pour vous, et vous seul.</span></h1>
+      <p class="lead" data-i18n="hero_lead">Temusoft imagine et développe des applications utiles, simples et performantes pour vous aider à gérer votre activité et gagner du temps au quotidien.</p>
+      
+      <!-- الأزرار الرئيسية المحدثة مع رابط تطبيق أرباح -->
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://zawali4gaming.github.io/arbah-web/" target="_blank" data-i18n="btn_arbah">تطبيق أرباح لتسيير محلات الكمبيوتر والهاتف ↗</a>
+        <button class="btn btn-ghost" onclick="openCustomAppModal()" data-i18n="btn_custom_app">طلب تطبيق مخصص ✨</button>
+      </div>
+      
+      <div class="trust-line"><div class="avatars"><span>✓</span><span>⚙</span><span>✦</span></div><span data-i18n="hero_trust">Des outils pensés autour de vos besoins, pas l’inverse.</span></div>
+    </div>
+    
+    <div class="visual reveal" id="visualContainer">
+      <div class="orb"></div>
+      
+      <!-- Interactive POS App Dashboard Card -->
+      <div class="dashboard" id="interactiveDashboard">
+        <div class="dash-top">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <span class="dash-label" data-i18n="pos_dash_title">SYSTÈME DE VENTE TACTILE</span>
+          <span class="dash-pill" data-i18n="dash_online">● En ligne</span>
+        </div>
+        
+        <div class="pos-app-wrapper">
+          <div class="pos-search-bar">
+            <span>🔍</span> <span data-i18n="pos_search">Rechercher un produit...</span>
+          </div>
+          
+          <div class="pos-grid">
+            <div class="pos-item" onclick="addToCart('Café Espresso', 2.50)">
+              <div class="pos-item-icon">☕</div>
+              <span class="pos-item-name" data-i18n="p_espresso">Espresso</span>
+              <span class="pos-item-price">2.50 €</span>
+            </div>
+            <div class="pos-item" onclick="addToCart('Laptop Pro', 850.00)">
+              <div class="pos-item-icon">💻</div>
+              <span class="pos-item-name" data-i18n="p_laptop">Laptop</span>
+              <span class="pos-item-price">850 €</span>
+            </div>
+            <div class="pos-item" onclick="addToCart('Souris Sans Fil', 25.00)">
+              <div class="pos-item-icon">🖱️</div>
+              <span class="pos-item-name" data-i18n="p_mouse">Souris</span>
+              <span class="pos-item-price">25.00 €</span>
+            </div>
+          </div>
+          
+          <div class="pos-cart-summary">
+            <div class="cart-title">
+              <span data-i18n="pos_cart">Panier d'achat</span>
+              <span id="cartCount">2 éléments</span>
+            </div>
+            
+            <div class="cart-items-list" id="cartList">
+              <div class="cart-row">
+                <span><span class="cart-row-qty">1x</span> <span data-i18n="p_laptop">Laptop</span></span>
+                <strong>850.00 €</strong>
+              </div>
+              <div class="cart-row">
+                <span><span class="cart-row-qty">2x</span> <span data-i18n="p_espresso">Espresso</span></span>
+                <strong>5.00 €</strong>
+              </div>
+            </div>
+            
+            <div class="cart-total">
+              <span data-i18n="pos_total">Total :</span>
+              <span id="cartTotalSum" style="color:var(--cyan)">855.00 €</span>
+            </div>
+          </div>
+          
+          <button class="pos-checkout-btn" onclick="triggerCheckout()" data-i18n="pos_btn">Valider la commande ↗</button>
+        </div>
+      </div>
+      
+      <div class="float-card fc-one"><strong data-i18n="fc_1_title"><span class="fc-icon">✦</span>Sur mesure</strong><small data-i18n="fc_1_sub">Adapté à votre organisation</small></div>
+      <div class="float-card fc-two"><strong data-i18n="fc_2_title"><span class="fc-icon">↗</span>Moins de tâches répétitives</strong><small data-i18n="fc_2_sub">Plus de temps pour l’essentiel</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL FORM: للتطبيق المخصص والإرسال إلى واتساب -->
+<div class="modal-overlay" id="customAppModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeCustomAppModal()">&times;</button>
+    <div style="margin-bottom:20px">
+      <h3 style="margin:0 0 6px 0;font-size:1.4rem" data-i18n="modal_title">طلب تطبيق مخصص على مقاسك</h3>
+      <p style="margin:0;color:var(--muted);font-size:0.88rem" data-i18n="modal_sub">أدخل التفاصيل وسيتم إرسال الطلب مباشرة إلى الواتساب الخاص بنا (0542054655).</p>
+    </div>
+    
+    <form id="modalWhatsappForm" style="padding:0;background:none;border:none">
+      <div>
+        <label for="m_name" data-i18n="f_name">الاسم الكامل *</label>
+        <input id="m_name" name="m_name" required placeholder="مثال: محمد علي">
+      </div>
+      <div>
+        <label for="m_phone" data-i18n="m_phone">رقم الهاتف *</label>
+        <input id="m_phone" name="m_phone" required placeholder="0542054655">
+      </div>
+      <div>
+        <label for="m_type" data-i18n="m_type">نوع النشاط / المحل *</label>
+        <input id="m_type" name="m_type" required placeholder="مثال: محل هواتف، حواسيب، مطعم...">
+      </div>
+      <div>
+        <label for="m_system" data-i18n="m_system">النظام المطلوب</label>
+        <select id="m_system" name="m_system">
+          <option value="تطبيق كمبيوتر (Desktop)">تطبيق كمبيوتر (Desktop)</option>
+          <option value="تطبيق هاتف (Android/iOS)">تطبيق هاتف (Android/iOS)</option>
+          <option value="تطبيق ويب + كمبيوتر">تطبيق ويب + كمبيوتر</option>
+        </select>
+      </div>
+      <div class="full">
+        <label for="m_details" data-i18n="f_msg">تفاصيل التطبيق والمميزات المطلوبة *</label>
+        <textarea id="m_details" name="m_details" required placeholder="اشرح لنا الميزات التي تريدها في التطبيق..."></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit" style="margin-top:10px" data-i18n="m_submit">إرسال الطلب عبر الواتساب 🟢</button>
+    </form>
+  </div>
+</div>
+
+<section id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker" data-i18n="serv_kicker">Ce que nous faisons</div>
+      <h2 data-i18n="serv_title">La technologie au service de votre quotidien.</h2>
+      <p data-i18n="serv_desc">De l’idée à la mise en service, nous concevons des solutions numériques concrètes qui s’adaptent à votre façon de travailler.</p>
+    </div>
+    <div class="services">
+      <article class="service reveal"><div class="iconbox">⌘</div><h3 data-i18n="s1_title">Développement sur mesure</h3><p data-i18n="s1_desc">Des applications conçues selon vos processus, vos objectifs et les besoins de votre équipe.</p><div class="tag-row"><span class="tag" data-i18n="s1_t1">Applications métier</span><span class="tag" data-i18n="s1_t2">Web & desktop</span></div></article>
+      <article class="service reveal"><div class="iconbox">▦</div><h3 data-i18n="s2_title">Gestion commerciale</h3><p data-i18n="s2_desc">Centralisez les ventes, les achats, les clients, les fournisseurs et le suivi de votre activité.</p><div class="tag-row"><span class="tag" data-i18n="s2_t1">Facturation</span><span class="tag" data-i18n="s2_t2">Clients</span></div></article>
+      <article class="service reveal"><div class="iconbox">▤</div><h3 data-i18n="s3_title">Stocks & inventaire</h3><p data-i18n="s3_desc">Suivez les entrées et sorties, les seuils d’alerte et les mouvements de stock plus facilement.</p><div class="tag-row"><span class="tag" data-i18n="s3_t1">Inventaire</span><span class="tag" data-i18n="s3_t2">Alertes</span></div></article>
+      <article class="service reveal"><div class="iconbox">♨</div><h3 data-i18n="s4_title">Solutions pour restaurants</h3><p data-i18n="s4_desc">Organisez les commandes, les articles, les ventes et les opérations de votre établissement.</p><div class="tag-row"><span class="tag" data-i18n="s4_t1">Commandes</span><span class="tag" data-i18n="s4_t2">Caisse</span></div></article>
+      <article class="service reveal"><div class="iconbox">▣</div><h3 data-i18n="s5_title">Automatisation bureautique</h3><p data-i18n="s5_desc">Réduisez les tâches répétitives liées aux documents, aux tableaux et aux présentations.</p><div class="tag-row"><span class="tag">Word</span><span class="tag">Excel</span><span class="tag">PowerPoint</span></div></article>
+      <article class="service reveal"><div class="iconbox">◇</div><h3 data-i18n="s6_title">Conseil & accompagnement</h3><p data-i18n="s6_desc">Clarification du besoin, choix de la solution, prise en main et évolution de vos outils.</p><div class="tag-row"><span class="tag" data-i18n="s6_t1">Assistance</span><span class="tag" data-i18n="s6_t2">Formation</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="product-wrap" id="solutions">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker" data-i18n="sol_kicker">Nos solutions</div>
+      <h2 data-i18n="sol_title">Un outil adapté à chaque activité.</h2>
+      <p data-i18n="sol_desc">Utilisez une solution existante Temusoft ou échangeons pour construire celle qu’il vous faut.</p>
+    </div>
+    <div class="products">
+      <article class="product reveal"><div class="product-icon">💻</div><div><h3 data-i18n="p1_arbah_title">تطبيق أرباح (كمبيوتر وهاتف)</h3><p data-i18n="p1_arbah_desc">برنامج أرباح المخصص لإدارة محلات ومحلات صيانة الكمبيوتر والهواتف: تتبع المبيعات، قطع الغيار، الصيانة، المخزون، والأرباح بكل سهولة.</p><a href="https://zawali4gaming.github.io/arbah-web/" target="_blank" data-i18n="p_demo">تصفح تطبيق أرباح مباشرة ↗</a></div></article>
+      <article class="product reveal"><div class="product-icon">🍽️</div><div><h3>Temu Restaurant</h3><p data-i18n="p2_desc">Un outil pour organiser les commandes, les articles, les ventes et le suivi quotidien de votre restaurant.</p><a href="#contact" data-topic="Application de gestion de restaurant" data-i18n="p2_link">Parlons de votre restaurant ↗</a></div></article>
+      <article class="product reveal"><div class="product-icon">📦</div><div><h3>Temu Stock</h3><p data-i18n="p3_desc">Gardez une vue claire sur les quantités, les mouvements et les alertes afin de mieux maîtriser votre inventaire.</p><a href="#contact" data-topic="Application de gestion de stock" data-i18n="p3_link">Organiser mon stock ↗</a></div></article>
+      <article class="product reveal"><div class="product-icon">📊</div><div><h3>Temu Office</h3><p data-i18n="p4_desc">Automatisez les opérations entre Word, Excel et PowerPoint : génération de documents, rapports, tableaux et présentations.</p><a href="#contact" data-topic="Automatisation Word Excel PowerPoint" data-i18n="p4_link">Automatiser mes documents ↗</a></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="methode">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker" data-i18n="met_kicker">Une méthode claire</div>
+      <h2 data-i18n="met_title">De votre besoin à votre solution.</h2>
+      <p data-i18n="met_desc">Un parcours simple, transparent et collaboratif pour faire avancer votre projet.</p>
+    </div>
+    <div class="process">
+      <div class="step reveal"><div class="step-num" data-i18n="st1_num">ÉTAPE 01</div><h3 data-i18n="st1_title">Nous vous écoutons</h3><p data-i18n="st1_desc">Nous comprenons votre activité, vos difficultés et vos priorités.</p></div>
+      <div class="step reveal"><div class="step-num" data-i18n="st2_num">ÉTAPE 02</div><h3 data-i18n="st2_title">Nous concevons</h3><p data-i18n="st2_desc">Nous définissons les fonctionnalités et l’expérience les plus adaptées.</p></div>
+      <div class="step reveal"><div class="step-num" data-i18n="st3_num">ÉTAPE 03</div><h3 data-i18n="st3_title">Nous développons</h3><p data-i18n="st3_desc">Nous construisons, testons et ajustons la solution avec vous.</p></div>
+      <div class="step reveal"><div class="step-num" data-i18n="st4_num">ÉTAPE 04</div><h3 data-i18n="st4_title">Nous vous accompagnons</h3><p data-i18n="st4_desc">Nous vous aidons à prendre en main l’outil et à le faire évoluer.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cta reveal">
+      <div>
+        <div class="kicker" data-i18n="cta_kicker">Vous avez une idée ?</div>
+        <h2 data-i18n="cta_title">Transformons vos besoins en solution.</h2>
+        <p data-i18n="cta_desc">Expliquez-nous votre projet, même s’il n’est pas encore complètement défini. Nous vous aiderons à identifier la bonne approche.</p>
+      </div>
+      <a class="btn btn-primary" href="#contact" data-i18n="cta_btn">Parler à Temusoft ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container contact-grid">
+    <div class="contact-info reveal">
+      <div class="kicker" data-i18n="c_kicker">Contact</div>
+      <h2 data-i18n="c_title">Parlons de votre prochain projet.</h2>
+      <p data-i18n="c_desc">Décrivez-nous votre activité et ce que vous souhaitez améliorer. Nous pourrons ensuite discuter des fonctionnalités et des prochaines étapes.</p>
+      <div class="contact-item"><span>📱</span><div><strong>واتساب / WhatsApp</strong><br><small style="color:var(--muted)">0542054655</small></div></div>
+      <div class="contact-item"><span>↗</span><div><strong data-i18n="c_loc">Partout où votre activité vous mène</strong><br><small style="color:var(--muted)" data-i18n="c_loc_sub">Solutions adaptées à vos besoins</small></div></div>
+    </div>
+    
+    <!-- نموذج الاتصال الرئيسي مخصص للإرسال للواتساب مباشرة -->
+    <form id="contactForm" class="reveal">
+      <div><label for="name" data-i18n="f_name">Votre nom *</label><input id="name" name="name" required placeholder="Nom et prénom"></div>
+      <div><label for="company" data-i18n="f_company">Entreprise</label><input id="company" name="company" placeholder="Nom de votre entreprise"></div>
+      <div><label for="email" data-i18n="f_email">Votre e-mail / الهاتف *</label><input id="email" name="email" required placeholder="الهاتف أو البريد الإلكتروني"></div>
+      <div><label for="service" data-i18n="f_service">Votre besoin</label>
+        <select id="service" name="service">
+          <option value="تطبيق أرباح (كمبيوتر وهواتف)" data-i18n="opt_arbah">تطبيق أرباح (كمبيوتر وهواتف)</option>
+          <option value="Application sur mesure" data-i18n="opt1">Application sur mesure</option>
+          <option value="Gestion de magasin / entreprise" data-i18n="opt2">Gestion de magasin / entreprise</option>
+          <option value="Gestion de restaurant" data-i18n="opt3">Gestion de restaurant</option>
+          <option value="Gestion de stock" data-i18n="opt4">Gestion de stock</option>
+          <option value="Automatisation Word / Excel / PowerPoint" data-i18n="opt5">Automatisation Word / Excel / PowerPoint</option>
+          <option value="Autre demande" data-i18n="opt6">Autre demande</option>
+        </select>
+      </div>
+      <div class="full"><label for="message" data-i18n="f_msg">Parlez-nous de votre projet *</label><textarea id="message" name="message" required placeholder="Quel problème souhaitez-vous résoudre ?"></textarea></div>
+      <button class="btn btn-primary" type="submit" data-i18n="f_submit_wa">إرسال عبر الواتساب (0542054655) 🟢</button>
+      <p id="formNote" class="full" style="margin:0;color:var(--muted);font-size:.8rem" data-i18n="f_note_wa">سيتم فتح تطبيق الواتساب تلقائياً لإرسال الرسالة إلى الرقم 0542054655.</p>
+    </form>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="container footer-inner">
+    <a class="brand" href="#accueil"><span class="brand-mark">T</span><span>temu<em style="font-style:normal;color:var(--cyan)">soft</em></span></a>
+    <span>© <span id="year"></span> Temusoft. <span data-i18n="rights">Tous droits réservés.</span></span>
+    <div class="footer-links">
+      <a href="#services" data-i18n="nav_services">Services</a>
+      <a href="#solutions" data-i18n="nav_solutions">Solutions</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ================= WHATSAPP TARGET PHONE ================= */
+const WHATSAPP_NUMBER = "213542054655";
+
+/* ================= TRANSLATIONS ================= */
+const translations = {
+  fr: {
+    nav_services: "Nos services", nav_solutions: "Nos solutions", nav_methode: "Notre méthode", nav_contact: "Contact", nav_talk: "Parlons de votre projet ↗",
+    hero_eyebrow: "VOTRE PARTENAIRE NUMÉRIQUE", hero_title_1: "Temusoft, votre partenaire pour créer", hero_title_2: "l'application idéale pour vous, et vous seul.", hero_lead: "Temusoft imagine et développe des applications utiles, simples et performantes pour vous aider à gérer votre activité et gagner du temps au quotidien.", hero_trust: "Des outils pensés autour de vos besoins, pas l’inverse.",
+    btn_arbah: "Application Arbah (Magasins PC & Mobile) ↗", btn_custom_app: "Demander une App Sur Mesure ✨",
+    modal_title: "Demander une Application Sur Mesure", modal_sub: "Remplissez le formulaire, votre demande sera envoyée directement sur WhatsApp (0542054655).", m_phone: "Numéro de téléphone *", m_type: "Type d'activité / Commerce *", m_system: "Système souhaité", m_submit: "Envoyer via WhatsApp 🟢",
+    pos_dash_title: "SYSTÈME DE VENTE TACTILE", dash_online: "● En ligne", pos_search: "Rechercher un produit...", p_espresso: "Espresso", p_laptop: "Laptop Pro", p_mouse: "Souris", pos_cart: "Panier d'achat", pos_total: "Total :", pos_btn: "Valider la commande ↗",
+    fc_1_title: "Sur mesure", fc_1_sub: "Adapté à votre organisation", fc_2_title: "Moins de tâches répétitives", fc_2_sub: "Plus de temps pour l’essentiel",
+    serv_kicker: "Ce que nous faisons", serv_title: "La technologie au service de votre quotidien.", serv_desc: "De l’idée à la mise en service, nous concevons des solutions numériques concrètes qui s’adaptent à votre façon de travailler.",
+    s1_title: "Développement sur mesure", s1_desc: "Des applications conçues selon vos processus, vos objectifs et les besoins de votre équipe.", s1_t1: "Applications métier", s1_t2: "Web & desktop",
+    s2_title: "Gestion commerciale", s2_desc: "Centralisez les ventes, les achats, les clients, les fournisseurs et le suivi de votre activité.", s2_t1: "Facturation", s2_t2: "Clients",
+    s3_title: "Stocks & inventaire", s3_desc: "Suivez les entrées et sorties, les seuils d’alerte et les mouvements de stock plus facilement.", s3_t1: "Inventaire", s3_t2: "Alertes",
+    s4_title: "Solutions pour restaurants", s4_desc: "Organisez les commandes, les articles, les ventes et les opérations de votre établissement.", s4_t1: "Commandes", s4_t2: "Caisse",
+    s5_title: "Automatisation bureautique", s5_desc: "Réduisez les tâches répétitives liées aux documents, aux tableaux et aux présentations.",
+    s6_title: "Conseil & accompagnement", s6_desc: "Clarification du besoin, choix de la solution, prise en main et évolution de vos outils.", s6_t1: "Assistance", s6_t2: "Formation",
+    sol_kicker: "Nos solutions", sol_title: "Un outil adapté à chaque activité.", sol_desc: "Utilisez une solution existante Temusoft ou échangeons pour construire celle qu’il vous faut.",
+    p1_arbah_title: "Application ARBAH (PC & Mobile)", p1_arbah_desc: "Gestion complète pour magasins de téléphones et d'informatique : ventes, réparations, pièces de rechange et bénéfices.", p_demo: "Consulter l'application ARBAH ↗",
+    p2_desc: "Un outil pour organiser les commandes, les articles, les ventes et le suivi quotidien de votre restaurant.", p2_link: "Parlons de votre restaurant ↗",
+    p3_desc: "Gardez une vue claire sur les quantités, les mouvements et les alertes afin de mieux maîtriser votre inventaire.", p3_link: "Organiser mon stock ↗",
+    p4_desc: "Automatisez les opérations entre Word, Excel et PowerPoint : génération de documents, rapports, tableaux et présentations.", p4_link: "Automatiser mes documents ↗",
+    met_kicker: "Une méthode claire", met_title: "De votre besoin à votre solution.", met_desc: "Un parcours simple, transparent et collaboratif pour faire avancer votre projet.",
+    st1_num: "ÉTAPE 01", st1_title: "Nous vous écoutons", st1_desc: "Nous comprenons votre activité, vos difficultés et vos priorités.",
+    st2_num: "ÉTAPE 02", st2_title: "Nous concevons", st2_desc: "Nous définissons les fonctionnalités et l’expérience les plus adaptées.",
+    st3_num: "ÉTAPE 03", st3_title: "Nous développons", st3_desc: "Nous construisons, testons et ajustons la solution avec vous.",
+    st4_num: "ÉTAPE 04", st4_title: "Nous vous accompagnons", st4_desc: "Nous vous aidons à prendre en main l’outil et à le faire évoluer.",
+    cta_kicker: "Vous avez une idée ?", cta_title: "Transformons vos besoins en solution.", cta_desc: "Expliquez-nous votre projet, même s’il n’est pas encore complètement défini. Nous vous aiderons à identifier la bonne approche.", cta_btn: "Parler à Temusoft ↗",
+    c_kicker: "Contact", c_title: "Parlons de votre prochain projet.", c_desc: "Décrivez-nous votre activité et ce que vous souhaitez améliorer. Nous pourrons ensuite discuter des fonctionnalités et des prochaines étapes.", c_loc: "Partout où votre activité vous mène", c_loc_sub: "Solutions adaptées à vos besoins",
+    f_name: "Votre nom *", f_company: "Entreprise", f_email: "Votre Téléphone / Email *", f_service: "Votre besoin", opt_arbah: "Application Arbah (Magasins PC & Mobile)", opt1: "Application sur mesure", opt2: "Gestion de magasin / entreprise", opt3: "Gestion de restaurant", opt4: "Gestion de stock", opt5: "Automatisation Word / Excel / PowerPoint", opt6: "Autre demande", f_msg: "Parlez-nous de votre projet *", f_submit_wa: "Envoyer sur WhatsApp (0542054655) 🟢", f_note_wa: "L'application WhatsApp s'ouvrira directement.", rights: "Tous droits réservés."
+  },
+  ar: {
+    nav_services: "خدماتنا", nav_solutions: "حلولنا", nav_methode: "منهجيتنا", nav_contact: "اتصل بنا", nav_talk: "فلنتحدث عن مشروعك ↗",
+    hero_eyebrow: "شريكك الرقمي", hero_title_1: "تيموسوفت رفيقك لتصنع", hero_title_2: "التطبيق المثالي لك أنت وفقط.", hero_lead: "تحدد وتطور تيموسوفت تطبيقات مفيدة، بسيطة وفعالة لمساعدتك في إدارة نشاطك وتوفير الوقت يومياً.", hero_trust: "أدوات مصممة حول احتياجاتك، وليس العكس.",
+    btn_arbah: "تطبيق أرباح لتسيير محلات الكمبيوتر والهاتف ↗", btn_custom_app: "طلب تطبيق مخصص ✨",
+    modal_title: "طلب تطبيق مخصص على مقاسك", modal_sub: "أدخل التفاصيل وسيتم إرسال الطلب مباشرة إلى الواتساب الخاص بنا (0542054655).", m_phone: "رقم الهاتف *", m_type: "نوع النشاط / المحل *", m_system: "النظام المطلوب", m_submit: "إرسال الطلب عبر الواتساب 🟢",
+    pos_dash_title: "شاشة مبيعات ونقطة بيع تفاعلية", dash_online: "● متصل", pos_search: "البحث عن منتج...", p_espresso: "قهوة إسبرسو", p_laptop: "حاسوب محمول", p_mouse: "فأرة لاسلكية", pos_cart: "سلة المشتريات", pos_total: "المجموع :", pos_btn: "تأكيد وإتمام الطلب ↗",
+    fc_1_title: "مخصص لك", fc_1_sub: "يتكيف مع مؤسستك", fc_2_title: "مهام تكرارية أقل", fc_2_sub: "وقت أكثر للأهم",
+    serv_kicker: "ما نقدمه", serv_title: "التكنولوجيا في خدمة عملك اليومي.", serv_desc: "من الفكرة إلى التشغيل، نصمم حلولاً رقمية ملموسة تتكيف مع طريقة عملك.",
+    s1_title: "تطوير مخصص", s1_desc: "تطبيقات مصممة وفقاً لعملياتك، أهدافك واحتياجات فريقك.", s1_t1: "تطبيقات أعمال", s1_t2: "ويب وسطح المكتب",
+    s2_title: "الإدارة التجارية", s2_desc: "مركزة المبيعات، المشتريات، العملاء، الموردين ومتابعة نشاطك.", s2_t1: "الفوترة", s2_t2: "العملاء",
+    s3_title: "المخزون والجرد", s3_desc: "تتبع المدخلات والمخرجات، التنبيهات وحركات المخزون بسهولة.", s3_t1: "الجرد", s3_t2: "التنبيهات",
+    s4_title: "حلول المطاعم", s4_desc: "تنظيم الطلبات، المنتجات، المبيعات وعمليات مؤسستك.", s4_t1: "الطلبات", s4_t2: "الصندوق",
+    s5_title: "أتمتة المكتبية", s5_desc: "تقليل المهام المتكررة المتعلقة بالمستندات، الجداول والعروض.",
+    s6_title: "استشارات ومرافقة", s6_desc: "توضيح الاحتياجات، اختيار الحل، التدريب وتطوير أدواتك.", s6_t1: "المساعدة", s6_t2: "التدريب",
+    sol_kicker: "حلولنا", sol_title: "أداة مناسبة لكل نشاط.", sol_desc: "استخدم حلاً حالياً من Temusoft أو تواصل معنا لبناء ما تحتاجه.",
+    p1_arbah_title: "تطبيق أرباح (كمبيوتر وهاتف)", p1_arbah_desc: "برنامج أرباح المخصص لإدارة محلات ومحلات صيانة الكمبيوتر والهواتف: تتبع المبيعات، قطع الغيار، الصيانة، المخزون، والأرباح بكل سهولة.", p_demo: "تصفح تطبيق أرباح مباشرة ↗",
+    p2_desc: "أداة لتنظيم الطلبات، المنتجات والمبيعات والمتابعة اليومية لمطعمك.", p2_link: "نتحدث عن مطعمك ↗",
+    p3_desc: "احصل على رؤية واضحة للكميات، الحركات والتنبيهات للتحكم في المخزون.", p3_link: "تنظيم مخزوني ↗",
+    p4_desc: "أتمتة العمليات بين Word وExcel وPowerPoint: إنشاء المستندات والتقارير.", p4_link: "أتمتة مستنداتي ↗",
+    met_kicker: "منهجية واضحة", met_title: "من احتياجك إلى حلّك.", met_desc: "مسار بسيط، شفاف وتشاركي لتطوير مشروعك.",
+    st1_num: "الخطوة 01", st1_title: "نستمع إليك", st1_desc: "نفهم نشاطك، تحدياتك وأولوياتك.",
+    st2_num: "الخطوة 02", st2_title: "نقوم بالتصميم", st2_desc: "نحدد الميزات والتجربة الأكثر ملاءمة.",
+    st3_num: "الخطوة 03", st3_title: "نقوم بالتطوير", st3_desc: "نبني، نختبر ونضبط الحل معك.",
+    st4_num: "الخطوة 04", st4_title: "نرافقك", st4_desc: "نساعدك في استيعاب الأداة وتطويرها مستقبلاً.",
+    cta_kicker: "هل لديك فكرة؟", cta_title: "لنحول احتياجاتك إلى حل فعلي.", cta_desc: "اشرح لنا مشروعك حتى لو لم يكن محدداً بالكامل بعد. سنساعدك في تحديد النهج المناسب.", cta_btn: "تحدث مع Temusoft ↗",
+    c_kicker: "اتصل بنا", c_title: "فلنتحدث عن مشروعك القادم.", c_desc: "صف لنا نشاطك وما تريد تحسينه. يمكننا بعد ذلك مناقشة الميزات والخطوات التالية.", c_loc: "أينما كان نشاطك", c_loc_sub: "حلول مخصصة لاحتياجاتك",
+    f_name: "الاسم *", f_company: "الشركة", f_email: "الهاتف / البريد الإلكتروني *", f_service: "احتياجك", opt_arbah: "تطبيق أرباح (كمبيوتر وهواتف)", opt1: "تطبيق مخصص", opt2: "إدارة متجر / شركة", opt3: "إدارة مطعم", opt4: "إدارة مخزون", opt5: "أتمتة Word / Excel / PowerPoint", opt6: "طلب آخر", f_msg: "حدثنا عن مشروعك *", f_submit_wa: "إرسال عبر الواتساب (0542054655) 🟢", f_note_wa: "سيتم فتح تطبيق الواتساب تلقائياً لإرسال الرسالة إلى الرقم 0542054655.", rights: "جميع الحقوق محفوظة."
+  },
+  en: {
+    nav_services: "Our Services", nav_solutions: "Our Solutions", nav_methode: "Our Method", nav_contact: "Contact", nav_talk: "Let's Talk ↗",
+    hero_eyebrow: "YOUR DIGITAL PARTNER", hero_title_1: "Temusoft, your partner to create", hero_title_2: "the ideal app for you and you alone.", hero_lead: "Temusoft designs and develops simple, useful, and powerful applications to help you manage your business and save time every day.", hero_trust: "Tools designed around your needs, not the other way around.",
+    btn_arbah: "Arbah App for PC & Phone Shops ↗", btn_custom_app: "Request Custom App ✨",
+    modal_title: "Request a Custom Application", modal_sub: "Fill in the details and your request will be sent directly to WhatsApp (0542054655).", m_phone: "Phone Number *", m_type: "Activity / Shop Type *", m_system: "Desired System", m_submit: "Send via WhatsApp 🟢",
+    pos_dash_title: "TOUCH POS SALES SYSTEM", dash_online: "● Online", pos_search: "Search product...", p_espresso: "Espresso", p_laptop: "Laptop Pro", p_mouse: "Wireless Mouse", pos_cart: "Shopping Cart", pos_total: "Total:", pos_btn: "Complete Checkout ↗",
+    fc_1_title: "Custom Built", fc_1_sub: "Tailored to your needs", fc_2_title: "Less Repetitive Tasks", fc_2_sub: "More time for essentials",
+    serv_kicker: "What We Do", serv_title: "Technology serving your daily work.", serv_desc: "From idea to production, we build real digital solutions that adapt to your workflow.",
+    s1_title: "Custom Development", s1_desc: "Applications designed according to your processes, goals, and team needs.", s1_t1: "Business Apps", s1_t2: "Web & Desktop",
+    s2_title: "Commercial Management", s2_desc: "Centralize sales, purchases, customers, suppliers, and activity tracking.", s2_t1: "Invoicing", s2_t2: "Clients",
+    s3_title: "Stock & Inventory", s3_desc: "Track inputs, outputs, alert thresholds, and stock movements easily.", s3_t1: "Inventory", s3_t2: "Alerts",
+    s4_title: "Restaurant Solutions", s4_desc: "Organize orders, menu items, sales, and overall operations.", s4_t1: "Orders", s4_t2: "POS",
+    s5_title: "Office Automation", s5_desc: "Reduce repetitive tasks involving documents, spreadsheets, and presentations.",
+    s6_title: "Consulting & Support", s6_desc: "Need analysis, software choice, onboarding, and tool evolution.", s6_t1: "Support", s6_t2: "Training",
+    sol_kicker: "Our Solutions", sol_title: "A tool tailored to every activity.", sol_desc: "Use an existing Temusoft solution or contact us to build a custom one.",
+    p1_arbah_title: "ARBAH Application (PC & Mobile)", p1_arbah_desc: "Complete management for phone & computer repair shops: sales, parts, repairs, inventory and profits.", p_demo: "Browse ARBAH app directly ↗",
+    p2_desc: "A tool to organize orders, items, sales, and daily operations for your restaurant.", p2_link: "Talk about your restaurant ↗",
+    p3_desc: "Keep a clear view of stock quantities, movements, and alerts to control inventory.", p3_link: "Organize my stock ↗",
+    p4_desc: "Automate operations between Word, Excel, and PowerPoint: documents and reports.", p4_link: "Automate documents ↗",
+    met_kicker: "A Clear Method", met_title: "From your need to your solution.", met_desc: "A simple, transparent, and collaborative process to move your project forward.",
+    st1_num: "STEP 01", st1_title: "We Listen", st1_desc: "We understand your business, challenges, and priorities.",
+    st2_num: "STEP 02", st2_title: "We Design", st2_desc: "We define the most suitable features and user experience.",
+    st3_num: "STEP 03", st3_title: "We Develop", st3_desc: "We build, test, and refine the solution with you.",
+    st4_num: "STEP 04", st4_title: "We Support You", st4_desc: "We help you onboard the tool and continuously evolve it.",
+    cta_kicker: "Have an idea?", cta_title: "Let's turn your needs into a solution.", cta_desc: "Tell us about your project, even if not fully defined yet. We will help you find the right approach.", cta_btn: "Talk to Temusoft ↗",
+    c_kicker: "Contact", c_title: "Let's talk about your next project.", c_desc: "Describe your business and what you want to improve. We can then discuss features and next steps.", c_loc: "Wherever your business goes", c_loc_sub: "Solutions tailored to your needs",
+    f_name: "Your Name *", f_company: "Company", f_email: "Phone / Email *", f_service: "Your Need", opt_arbah: "Arbah App (PC & Mobile Shops)", opt1: "Custom Application", opt2: "Store / Business Management", opt3: "Restaurant Management", opt4: "Stock Management", opt5: "Word / Excel / PowerPoint Automation", opt6: "Other Request", f_msg: "Tell us about your project *", f_submit_wa: "Send via WhatsApp (0542054655) 🟢", f_note_wa: "WhatsApp application will open directly.", rights: "All rights reserved."
+  }
+};
+
+/* ================= MODAL HANDLERS ================= */
+function openCustomAppModal() {
+  document.getElementById('customAppModal').classList.add('open');
+}
+function closeCustomAppModal() {
+  document.getElementById('customAppModal').classList.remove('open');
+}
+
+// إرسال استمارة التطبيق المخصص على الواتساب
+document.getElementById('modalWhatsappForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  
+  const text = `السلام عليكم تيموسوفت، أريد طلب تطبيق مخصص:%0A%0A` +
+               `👤 *الاسم:* ${f.get('m_name')}%0A` +
+               `📞 *الهاتف:* ${f.get('m_phone')}%0A` +
+               `🏬 *نوع النشاط:* ${f.get('m_type')}%0A` +
+               `💻 *النظام:* ${f.get('m_system')}%0A` +
+               `📝 *التفاصيل:*%0A${f.get('m_details')}`;
+               
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
+  closeCustomAppModal();
+});
+
+// إرسال استمارة الاتصال الرئيسية على الواتساب
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  
+  const text = `السلام عليكم Temusoft، استفسار جديد:%0A%0A` +
+               `👤 *الاسم:* ${f.get('name')}%0A` +
+               `🏢 *الشركة/المحل:* ${f.get('company') || 'غير محدد'}%0A` +
+               `📱 *الهاتف/البريد:* ${f.get('email')}%0A` +
+               `⚙️ *الخدمة المطلوب:* ${f.get('service')}%0A` +
+               `💬 *الرسالة:*%0A${f.get('message')}`;
+               
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
+});
+
+/* ================= 3D MOUSE PARALLAX FOR DASHBOARD ================= */
+const dashboard = document.getElementById('interactiveDashboard');
+const visualContainer = document.getElementById('visualContainer');
+
+if (visualContainer && dashboard) {
+  visualContainer.addEventListener('mousemove', (e) => {
+    const rect = visualContainer.getBoundingClientRect();
+    const x = e.clientX - rect.left - (rect.width / 2);
+    const y = e.clientY - rect.top - (rect.height / 2);
+    
+    const rotateX = (-y / rect.height) * 24;
+    const rotateY = (x / rect.width) * 24;
+    
+    dashboard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  });
+
+  visualContainer.addEventListener('mouseleave', () => {
+    dashboard.style.transform = `rotateX(0deg) rotateY(0deg)`;
+  });
+}
+
+/* ================= INTERACTIVE POS APP LOGIC ================= */
+let cartItems = [
+  { name: 'Laptop Pro', price: 850.00, qty: 1, key: 'p_laptop' },
+  { name: 'Espresso', price: 2.50, qty: 2, key: 'p_espresso' }
+];
+
+function renderCart() {
+  const cartList = document.getElementById('cartList');
+  const cartCount = document.getElementById('cartCount');
+  const cartTotalSum = document.getElementById('cartTotalSum');
+  const currentLang = document.documentElement.getAttribute('lang') || 'fr';
+  const dict = translations[currentLang] || translations.fr;
+  
+  cartList.innerHTML = '';
+  let totalSum = 0;
+  let totalQty = 0;
+
+  cartItems.forEach(item => {
+    totalSum += item.price * item.qty;
+    totalQty += item.qty;
+    
+    const row = document.createElement('div');
+    row.className = 'cart-row';
+    const translatedName = item.key && dict[item.key] ? dict[item.key] : item.name;
+    
+    row.innerHTML = `
+      <span><span class="cart-row-qty">${item.qty}x</span> ${translatedName}</span>
+      <strong>${(item.price * item.qty).toFixed(2)} €</strong>
+    `;
+    cartList.appendChild(row);
+  });
+
+  cartCount.textContent = `${totalQty} ${currentLang === 'ar' ? 'عناصر' : 'éléments'}`;
+  cartTotalSum.textContent = `${totalSum.toFixed(2)} €`;
+}
+
+function addToCart(name, price) {
+  let key = name === 'Café Espresso' ? 'p_espresso' : (name === 'Laptop Pro' ? 'p_laptop' : 'p_mouse');
+  const existing = cartItems.find(i => i.name === name);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cartItems.push({ name, price, qty: 1, key });
+  }
+  renderCart();
+}
+
+function triggerCheckout() {
+  const btn = document.querySelector('.pos-checkout-btn');
+  const currentLang = document.documentElement.getAttribute('lang') || 'fr';
+  const originalText = btn.textContent;
+  
+  btn.textContent = currentLang === 'ar' ? '✓ تم الطلب بنجاح!' : '✓ Commande Validée!';
+  btn.style.background = 'linear-gradient(110deg, #10b981, #059669)';
+  
+  setTimeout(() => {
+    btn.textContent = originalText;
+    btn.style.background = '';
+    cartItems = [];
+    renderCart();
+  }, 1800);
+}
+
+/* ================= LOGIC FOR LANG & THEME ================= */
+const themeSelect = document.getElementById('themeSelect');
+const langSelect = document.getElementById('langSelect');
+
+themeSelect.addEventListener('change', (e) => {
+  const theme = e.target.value;
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('temu_theme', theme);
+});
+
+function updateLanguage(lang) {
+  document.documentElement.setAttribute('lang', lang);
+  document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  
+  const dict = translations[lang];
+  if(!dict) return;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if(dict[key]) {
+      el.textContent = dict[key];
+    }
+  });
+
+  renderCart();
+  localStorage.setItem('temu_lang', lang);
+}
+
+langSelect.addEventListener('change', (e) => {
+  updateLanguage(e.target.value);
+});
+
+// Load Saved Preferences
+const savedTheme = localStorage.getItem('temu_theme') || 'dark';
+const savedLang = localStorage.getItem('temu_lang') || 'fr';
+
+themeSelect.value = savedTheme;
+document.documentElement.setAttribute('data-theme', savedTheme);
+
+langSelect.value = savedLang;
+updateLanguage(savedLang);
+
+/* ================= ORIGINAL SCRIPTS ================= */
+const menuBtn=document.getElementById('menuBtn'),nav=document.getElementById('navigation');
+menuBtn.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuBtn.setAttribute('aria-expanded',String(open));menuBtn.textContent=open?'✕':'☰'});
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');menuBtn.textContent='☰'}));
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
